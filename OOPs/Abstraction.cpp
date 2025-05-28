@@ -12,23 +12,32 @@ Abstract class -->
 provide implementation details of all the abstract (virtual) methods in the class.
 */
 class Car {
-public:
+
+protected:
+
+    string brand;
+    string model;
+    bool isEngineOn;
+    int currentSpeed;
+    int currentGear;
+public :
     virtual void startEngine() = 0;
     virtual void shiftGear(int gear) = 0;
     virtual void accelerate() = 0;
     virtual void brake() = 0;
-    virtual void stopEngine() = 0;
+    void stopEngine() {
+        isEngineOn = false;
+        currentGear = 0;
+        currentSpeed = 0;
+        cout << brand << " " << model << " : Engine turned off." << endl;
+    }
     virtual ~Car() {}
 };
 
 
 class SportsCar : public Car {
 public:
-    string brand;
-    string model;
-    bool isEngineOn;
-    int currentSpeed;
-    int currentGear;
+    
 
     SportsCar(string b, string m) {
         this->brand = b;
@@ -67,12 +76,7 @@ public:
         cout << brand << " " << model << " : Braking! Speed is now " << currentSpeed << " km/h" << endl;
     }
 
-    void stopEngine() {
-        isEngineOn = false;
-        currentGear = 0;
-        currentSpeed = 0;
-        cout << brand << " " << model << " : Engine turned off." << endl;
-    }
+   
 };
 
 // Main Method
